@@ -1,4 +1,4 @@
-document.getElementById("text").addEventListener("keyup", textEmpty);
+document.getElementById("text").addEventListener("keyup", disableButton);
 document.getElementById("text").addEventListener("keypress", charCount);
 document.getElementById("btn-submit").addEventListener("click", function() {
 	twitter();
@@ -7,16 +7,17 @@ document.getElementById("btn-submit").addEventListener("click", function() {
 });
 
 let text = "";
-let maxLength = 140;
+let maxLength = 139;
 
-function textEmpty() {
+function disableButton() {
 	event.preventDefault();
 
     let button = document.getElementById("btn-submit");
+    let textInput = document.getElementById("text");
 
     if (text.value == "") {
         button.disabled = true;
-    } else if (document.getElementById("text").length == 140) {
+    } else if (textInput.length == 140) {
     	button.disabled = true;
     } else {
         button.disabled = false;
@@ -28,9 +29,14 @@ function twitter(){
 
     text = document.getElementById("text").value;
 
-    localStorage.setItem("twitter", text);   
+    localStorage.setItem("twitter", text);
+
+    let newTweet = document.createElement("p");
+    let newNode = document.createTextNode(localStorage.getItem("twitter"));
+    newTweet.appendChild(newNode)
+    let newPost = document.getElementById("twitter-here");
     
-    return document.getElementById("twitter-here").innerHTML += localStorage.getItem("twitter") + " ";
+    return newPost.appendChild(newTweet); 
 }
 
 function charCount() {
