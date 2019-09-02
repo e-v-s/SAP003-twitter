@@ -6,7 +6,15 @@ document.getElementById("btn-submit").addEventListener("click", function() {
 	charReset();
 });
 
-let text = "";
+// document.getElementById("text").addEventListener("keydown", function(e) {
+// 	if(e.which === 8 && count <140) {
+// 		count++;
+// 		document.getElementById("char-count").innerHTML = count;
+
+// 	}
+// })
+
+let text = document.getElementById("text");
 let maxLengthText = 139;
 let button = document.getElementById("btn-submit");
 let count = 0;
@@ -39,14 +47,7 @@ function twitter(){
 }
 
 function charCount() {
-	// let char = 0;
-
-	// if (maxLengthText >= 0) {
-	// 	char = maxLengthText--;
-	// }
-	// document.getElementById("char-count").innerHTML = char;
-
-	if (maxLengthText >= 0) {
+	if (count >= 0) {
 		count = maxLengthText--;
 		document.getElementById("char-count").innerHTML = count;
 		if (count == 20) {
@@ -54,19 +55,20 @@ function charCount() {
 		} else if (count == 10) {
 			document.getElementById("char-count").style.color = "red";
 		}
-	} else if (maxLengthText < 0) {
+	} else if (count < 0) {
 		count = maxLengthText--;
 		document.getElementById("char-count").innerHTML = count;
 		document.getElementById("char-count").style.color = "grey";
 	}
 }
 
+
 function charReset() {
-	let char = 0;
+	count = 0;
 	maxLengthText = 140;
 	if (maxLengthText >= 0) {
-		char = maxLengthText--;
-	}
+		count = maxLengthText--;
+	} 
 	document.getElementById("char-count").innerHTML = 140;
 }
 
