@@ -8,16 +8,18 @@ document.getElementById("btn-submit").addEventListener("click", function() {
 
 let text = "";
 let maxLengthText = 139;
+let button = document.getElementById("btn-submit");
+let count = 0;
 
 function disableButton() {
 	event.preventDefault();
 
-    let button = document.getElementById("btn-submit");
-
-    if (text.value == "") {
+    if (text.value === "") {
         button.disabled = true;
-    } else {
+    } else if (text.value !== "" && count >= 0) {
         button.disabled = false;
+    } else {
+    	button.disabled = true;
     }
 }
 
@@ -37,13 +39,26 @@ function twitter(){
 }
 
 function charCount() {
-	let char = 0;
+	// let char = 0;
+
+	// if (maxLengthText >= 0) {
+	// 	char = maxLengthText--;
+	// }
+	// document.getElementById("char-count").innerHTML = char;
 
 	if (maxLengthText >= 0) {
-		char = maxLengthText--;
-		// document.getElementById("char-count").innerHTML = char;
+		count = maxLengthText--;
+		document.getElementById("char-count").innerHTML = count;
+		if (count == 20) {
+			document.getElementById("char-count").style.color = "blue";
+		} else if (count == 10) {
+			document.getElementById("char-count").style.color = "red";
+		}
+	} else if (maxLengthText < 0) {
+		count = maxLengthText--;
+		document.getElementById("char-count").innerHTML = count;
+		document.getElementById("char-count").style.color = "grey";
 	}
-	document.getElementById("char-count").innerHTML = char;
 }
 
 function charReset() {
@@ -57,5 +72,6 @@ function charReset() {
 
 function click() {
 	document.getElementById("text").value = "";
+	button.disabled = true;
 }
 
