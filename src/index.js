@@ -6,13 +6,11 @@ document.getElementById("btn-submit").addEventListener("click", function() {
 	charReset();
 });
 
-// document.getElementById("text").addEventListener("keydown", function(e) {
-// 	if(e.which === 8 && count <140) {
-// 		count++;
-// 		document.getElementById("char-count").innerHTML = count;
-
-// 	}
-// })
+document.getElementById("text").addEventListener("keydown", function(e) {
+ 	if(e.which === 8 && count <= 140) {
+ 		document.getElementById("char-count").innerHTML = count++;
+	} 
+})
 
 let text = document.getElementById("text");
 let maxLengthText = 139;
